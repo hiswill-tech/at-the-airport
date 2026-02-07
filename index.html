@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ the Airport - Pitch Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-gold: #D4AF37;
+      --deep-blue: #0A192F;
+      --sky-blue: #87CEEB;
+      --text-light: #F0F4F8;
+      --glass-bg: rgba(10, 25, 47, 0.85);
+      --soft-border: rgba(255,255,255,0.12);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #333;
+    }
+
+    /* --- SLIDE 1: COVER --- */
+    #cover-slide {
+      background-image: url('the concept.jpg'); /* Exterior hero */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .cover-overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.82));
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 6vw;
+      box-sizing: border-box;
+    }
+
+    .brand-logo {
+      width: min(420px, 70vw);
+      height: auto;
+      margin-bottom: 1.8rem;
+      filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.55));
+    }
+
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      color: var(--primary-gold);
+      margin-top: 0.6rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .sub-tagline {
+      font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+      opacity: 0.92;
+    }
+
+    /* --- GENERAL SLIDE LAYOUT --- */
+    .content-container {
+      width: 90%;
+      max-width: 1400px;
+      height: 85%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .text-panel {
+      padding: 3rem;
+      background: var(--glass-bg);
+      border-left: 5px solid var(--primary-gold);
+      backdrop-filter: blur(10px);
+      border-radius: 0 20px 20px 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 3.2vw, 3.5rem);
+      color: var(--primary-gold);
+      margin: 0 0 1.2rem 0;
+      line-height: 1;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--sky-blue);
+      margin: 0.8rem 0 0.8rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 0 0 1.2rem 0;
+      color: #d1d5db;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.3rem 0 0;
+    }
+
+    li {
+      margin-bottom: 0.9rem;
+      padding-left: 2rem;
+      position: relative;
+      font-size: 1.05rem;
+      color: #d1d5db;
+    }
+
+    li::before {
+      content: '✈';
+      position: absolute;
+      left: 0;
+      color: var(--primary-gold);
+    }
+
+    .image-panel {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+      background: rgba(0,0,0,0.25);
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .image-panel:hover img {
+      transform: scale(1.03);
+    }
+
+    /* --- SLIDE SPECIFICS --- */
+    .full-width-text {
+      grid-column: 1 / -1;
+      text-align: center;
+      border-left: none;
+      border-top: 5px solid var(--primary-gold);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      padding: 1.5rem;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid var(--soft-border);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary-gold);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #cbd5e1;
+    }
+
+    /* “Cabin Classes” cards: slightly more premium */
+    .tier-title {
+      font-weight: 900;
+      color: var(--primary-gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .tier-desc {
+      margin: 0;
+      color: #d1d5db;
+      line-height: 1.55;
+      font-size: 1.02rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .content-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        height: 90%;
+      }
+      .text-panel {
+        border-left: 0;
+        border-top: 5px solid var(--primary-gold);
+        border-radius: 0 0 20px 20px;
+      }
+      .image-panel { height: 42vh; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide" id="cover-slide">
+    <div class="cover-overlay">
+      <img src="@ the airport logo.jpg" alt="@ the Airport Logo" class="brand-logo">
+      <div class="tagline">"Why fly when you can dine?"</div>
+      <div class="sub-tagline">Zambia’s First Smart, Upcycled Aviation-Themed Restaurant</div>
+      <p style="margin-top: 1.6rem; font-size: 0.95rem; opacity: 0.78;">
+        A Flagship Project by UrbanShift Technologies Ltd.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: CONCEPT -->
+  <div class="slide" style="background: linear-gradient(rgba(10,25,47,0.92), rgba(10,25,47,0.92)), url('Gemini_Generated_Image_calsy9calsy9cals.jpg'); background-size: cover; background-position:center;">
+    <div class="content-container">
+      <div class="text-panel">
+        <h2>The Concept</h2>
+        <h3>The Problem</h3>
+        <p>
+          Livingstone attracts global tourists, but dining experiences remain conventional.
+          Modern travelers demand immersive, tech-enabled, premium concepts that go beyond the traditional safari lodge.
+        </p>
+        <h3>The Solution</h3>
+        <p>
+          A fully renovated 20-passenger aircraft transformed into a fine-dining destination —
+          where luxury hospitality, tourism, and technology intersect.
+        </p>
+      </div>
+      <div class="image-panel">
+        <img src="exterior.jpg" alt="Exterior Concept">
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: GUEST EXPERIENCE -->
+  <div class="slide" style="background-color: #050b14;">
+    <div class="content-container">
+      <div class="image-panel">
+        <img src="Interior.jpg" alt="Luxury Cabin Interior">
+      </div>
+      <div class="text-panel">
+        <h2>Guest Experience</h2>
+        <h3>First-Class Atmosphere</h3>
+        <ul>
+          <li><strong>Exclusivity:</strong> Only 20 seats per “flight” to maintain a private-jet feel.</li>
+          <li><strong>Design:</strong> Modern retrofitting that preserves the aviation soul while delivering five-star comfort.</li>
+          <li><strong>Ambiance:</strong> Starlight ceilings, velvet booths, and warm cabin lighting for an intimate evening setting.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: CABIN CLASSES (NEW) -->
+  <div class="slide" style="background-color:#020617;">
+    <div class="content-container">
+      <div class="text-panel full-width-text">
+        <h2>Cabin Classes</h2>
+        <h3>Luxury First — Access by Design</h3>
+        <p style="max-width: 980px; margin: 0 auto 0;">
+          The brand remains premium, while access is structured like aviation: tiered experiences with different reservation windows and service depth.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="tier-title">First Class</div>
+            <p class="tier-desc">Private dining flights, curated tasting menus, premium pairings, and priority boarding (reservations).</p>
+          </div>
+          <div class="stat-card">
+            <div class="tier-title">Business Class</div>
+            <p class="tier-desc">Premium à la carte dining with flexible weekday access — refined service, signature dishes, elegant atmosphere.</p>
+          </div>
+          <div class="stat-card">
+            <div class="tier-title">Sky Lounge</div>
+            <p class="tier-desc">Accessible luxury: cocktails, small plates, and social lounge seating — designed for locals without diluting the brand.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: TECH EDGE -->
+  <div class="slide" style="background-color: #0f172a;">
+    <div class="content-container">
+      <div class="text-panel">
+        <h2>Powered by UrbanShift</h2>
+        <h3>The Tech Edge</h3>
+        <p>
+          We don’t just serve food — we orchestrate a premium guest journey end-to-end, powered by a digital guest management layer.
+        </p>
+        <ul>
+          <li><strong>Smart Check-in:</strong> Contactless arrivals via QR-code boarding passes.</li>
+          <li><strong>In-Flight Service:</strong> Real-time kitchen coordination and digital ordering via in-seat tablets.</li>
+          <li><strong>Integration:</strong> Seamless connection with ZamRide for VIP airport transfers.</li>
+        </ul>
+      </div>
+
+      <div class="image-panel" style="border: none; background: transparent; box-shadow: none;">
+        <img src="powered by urbanshift tec.jpg" alt="Mobile Boarding Pass App" style="object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: PASSPORT / MEMBERSHIP (NEW) -->
+  <div class="slide" style="background-color:#0A192F;">
+    <div class="content-container">
+      <div class="text-panel">
+        <h2>The Airport Passport</h2>
+        <h3>More Than Dining</h3>
+        <p>
+          A premium membership layer for repeat guests — turning the restaurant into a lifestyle destination with priority boarding and exclusive flights.
+        </p>
+        <ul>
+          <li><strong>Priority Boarding:</strong> early access to reservations and peak “flight” windows</li>
+          <li><strong>Destination Stamps:</strong> themed menus (Tokyo, Paris, Lusaka) with seasonal rotations</li>
+          <li><strong>Invite-Only Flights:</strong> private tastings, brand collaborations, and special events</li>
+        </ul>
+      </div>
+      <div class="image-panel">
+        <img src="boarding pass.jpg" alt="Airport Passport Concept">
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: MENU -->
+  <div class="slide" style="background-color: #0A192F;">
+    <div class="content-container">
+      <div class="image-panel">
+        <img src="menu.jpg" alt="Boarding Pass Menu">
+      </div>
+      <div class="text-panel">
+        <h2>The Boarding Pass</h2>
+        <h3>A Culinary Journey</h3>
+        <p>
+          A destination-based menu that makes every meal a global journey — from “Takeoff” to “Cruising Altitude.”
+        </p>
+        <ul>
+          <li><strong>Global Cuisines:</strong> dishes inspired by Tokyo, Paris, and Lusaka.</li>
+          <li><strong>Tactile Experience:</strong> a premium “boarding pass” menu design that feels collectible.</li>
+          <li><strong>Signature Flights:</strong> chef-led tasting routes for special nights.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: DESIGNED FOR (NEW) -->
+  <div class="slide" style="background-color:#000;">
+    <div class="content-container">
+      <div class="text-panel">
+        <h2>Designed For</h2>
+        <h3>Premium Guests, Aspirational Access</h3>
+        <ul>
+          <li>International travelers seeking memorable, premium experiences</li>
+          <li>Corporate executives and business travelers</li>
+          <li>Couples, celebrations, and milestone moments</li>
+          <li>Aspirational locals who value quality and atmosphere</li>
+        </ul>
+        <p style="margin-top:1.1rem;">
+          Luxury remains the standard — access is structured through cabin classes and reservation windows.
+        </p>
+      </div>
+      <div class="image-panel">
+        <img src="Interior.jpg" alt="Target Guests">
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: BUSINESS OVERVIEW -->
+  <div class="slide" style="background: radial-gradient(circle at center, #1e293b 0%, #000 100%);">
+    <div class="content-container">
+      <div class="text-panel full-width-text">
+        <h2>Business Overview</h2>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-number">2.4M</span>
+            <span class="stat-label">Annual International Arrivals (Zambia)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">$130k+</span>
+            <span class="stat-label">Estimated Startup Capital</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">VIP</span>
+            <span class="stat-label">ZamRide Transfer Integration</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.6rem; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div class="stat-card" style="text-align:left;">
+            <h3 style="margin-top:0;">Prime Location</h3>
+            <p style="margin:0;">
+              Strategically positioned on the Mosi-oa-Tunya corridor in Livingstone for maximum tourist visibility and premium footfall.
+            </p>
+          </div>
+          <div class="stat-card" style="text-align:left;">
+            <h3 style="margin-top:0;">Revenue Streams</h3>
+            <p style="margin:0;">
+              Premium dining, curated tasting flights, private event bookings, and partnership packages with hotels, tour operators, and VIP transport.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: NIGHT FLIGHTS (NEW) -->
+  <div class="slide" style="background-color:#020617;">
+    <div class="content-container">
+      <div class="text-panel full-width-text">
+        <h2>Night Flights</h2>
+        <h3>High-Margin After-Hours</h3>
+        <p style="max-width: 980px; margin: 0 auto;">
+          After-hours lounge experiences — cocktails, curated playlists, and limited small-plate flights — designed to drive premium spend
+          while keeping the core dining experience exclusive.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: CLOSING -->
+
+<div class="slide" style="background-color: #000;">
+    <div class="cover-overlay" style="background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(0,0,0,1) 70%);">
+        <img src="@ the airport logo.jpg" alt="Logo" style="width: 180px; margin-bottom: 2rem; filter: drop-shadow(0 0 15px rgba(212,175,55,0.3));">
+        <h2 style="margin-bottom: 0.5rem;">Ready to Clear for Takeoff?</h2>
+        <p style="font-size: 1.2rem; color: #d1d5db; max-width: 600px; margin-bottom: 2.5rem;">
+            We are looking for a visionary host partner in Livingstone to bring Zambia’s most unique dining landmark to life.
+        </p>
+        
+        <a href="mailto:hiswill@urbanshift.co.zm?subject=Discovery Meeting: @ the Airport Project" 
+           style="text-decoration: none; background: var(--primary-gold); color: #000; padding: 1.2rem 2.5rem; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(212,175,55,0.3);"
+           onmouseover="this.style.transform='scale(1.05)'; this.style.backgroundColor='#f1c40f'"
+           onmouseout="this.style.transform='scale(1)'; this.style.backgroundColor='#D4AF37'">
+            Book a Discovery Meeting
+        </a>
+
+        <div style="margin-top: 3rem; text-align: center; opacity: 0.8;">
+            <p style="margin: 0.2rem 0; font-weight: 700; color: var(--primary-gold);">Hiswill Sichilima</p>
+            <p style="margin: 0.2rem 0; font-size: 0.9rem;">Founder, UrbanShift Technologies Ltd.</p>
+            <p style="margin: 0.2rem 0; font-size: 0.9rem;">hiswillsichilima192@gmail.com</p>
+            <p style="margin: 0.2rem 0; font-size: 0.8rem;">+260 767 614 910 or 0962100699</p>
+            <p style="margin: 0.2rem 0; font-size: 0.8rem;">+260773500332 whatsApp</p>
+        </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
